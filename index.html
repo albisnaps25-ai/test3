@@ -30,7 +30,6 @@
       background: url('v4_144.png') center/cover no-repeat;
       height: 160px;
       position: relative;
-      cursor: pointer;
     }
 
     .avatar {
@@ -43,7 +42,6 @@
       left: 50%;
       transform: translateX(-50%);
       object-fit: cover;
-      cursor: pointer;
     }
 
     .content {
@@ -317,7 +315,7 @@
 </head>
 <body>
   <div class="profile-card">
-    <div class="cover" id="bannerAd">
+    <div class="cover">
       <img src="v1_4.png" alt="Avatar" class="avatar">
     </div>
     <div class="content">
@@ -335,9 +333,6 @@
   
   <!-- Stats Popup -->
   <div class="popup-overlay stats-popup" id="statsPopup"><div class="popup"><div class="close-icon" id="closeStatsIcon">×</div><div class="popup-header" id="statsTitle">Statistikat</div><div class="stats-grid" id="statsGrid"></div><div class="popup-buttons"><button class="popup-btn btn-cancel" id="closeStatsBtn">Mbyll</button></div></div></div>
-  
-  <!-- Profile Popup -->
-  <div class="popup-overlay" id="profilePopup"><div class="popup"><div class="close-icon" id="closeProfilePopup">×</div><div class="popup-header">Emri Im</div><div class="popup-content"><div style="font-size: 16px; color: #666; margin-bottom: 10px;">Subheader këtu</div><div style="font-size: 22px; letter-spacing: 5px; margin: 15px 0;">•••</div><div class="banner-ad" style="margin: 15px 0;"><img src="https://via.placeholder.com/320x90/ff6b6b/ffffff?text=Banner+Ad" alt="Banner Ad"></div><button style="padding: 12px 25px; border: none; border-radius: 25px; background: #00aaff; color: #fff; font-size: 15px; cursor: pointer; font-weight: 500;">Vizito Profilin</button></div></div></div>
 
   <script src="script.js"></script>
 </body>

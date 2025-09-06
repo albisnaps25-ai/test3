@@ -14,14 +14,16 @@ function showStatsPopup(type) {
       images: [
         "https://via.placeholder.com/150x150/ff6b9d/ffffff?text=Foto+1",
         "https://via.placeholder.com/150x150/c44569/ffffff?text=Foto+2"
-      ]
+      ],
+      unlockUrl: "https://example.com/unlock-photos"
     },
     videos: {
       title: "🎥 Koleksioni i Videove",
       images: [
         "https://via.placeholder.com/150x150/636e72/ffffff?text=Video+1",
         "https://via.placeholder.com/150x150/2d3436/ffffff?text=Video+2"
-      ]
+      ],
+      unlockUrl: "https://example.com/unlock-videos"
     }
   };
 
@@ -73,6 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("statsPopup").style.display = "none";
   };
 
+  // Profile popup
+  document.querySelector(".avatar").onclick = () => {
+    document.getElementById("profilePopup").style.display = "flex";
+  };
+  document.getElementById("closeProfilePopup").onclick = () => {
+    document.getElementById("profilePopup").style.display = "none";
+  };
+
   // Buttons
   document.getElementById("explicitBtn").onclick = () => {
     showLinkPopup(
@@ -95,6 +105,13 @@ document.addEventListener("DOMContentLoaded", function () {
       "Ky link do t'ju çojë në faqe pagese. Vazhdoni?"
     );
   };
+  document.getElementById("bannerAd").onclick = () => {
+    showLinkPopup(
+      "https://example.com/banner",
+      "📢 Reklamë Banner",
+      "Ky link ju çon në një faqe partneri. Vazhdoni?"
+    );
+  };
   document.getElementById("bannerAdImage").onclick = () => {
     showLinkPopup(
       "https://example.com/banner-image",
@@ -111,3 +128,4 @@ document.addEventListener("DOMContentLoaded", function () {
     showStatsPopup("videos");
   };
 });
+

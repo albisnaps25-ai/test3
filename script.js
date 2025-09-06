@@ -147,6 +147,12 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById("profilePopup").style.display = "none";
     }
   };
+
+  document.getElementById("buttonPopup").onclick = (e) => {
+    if (e.target.id === "buttonPopup") {
+      document.getElementById("buttonPopup").style.display = "none";
+    }
+  };
   
   // Assign actions to existing elements
   document.getElementById("explicitBtn").onclick = () => {

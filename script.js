@@ -7,6 +7,64 @@ function showLinkPopup(url, title, message) {
   document.getElementById("linkPopup").style.display = "flex";
 }
 
+function showButtonPopup(type) {
+  // Define different content for each button type
+  const buttonData = {
+    explicit: {
+      name: "🔞 Explicit Content",
+      title: "Premium Adult Content",
+      bulletPoints: [
+        "Përmbajtje ekskluzive vetëm për të rritur",
+        "Material i kufizuar dhe i personalizuar", 
+        "Aksesi i plotë në koleksionin premium"
+      ],
+      bannerUrl: "https://via.placeholder.com/400x100/ff4444/ffffff?text=Adult+Content+Warning",
+      actionText: "🔓 Shiko Përmbajtjen",
+      finalUrl: "https://example.com/explicit-access"
+    },
+    livestream: {
+      name: "👁️ +18 Livestream",
+      title: "Live Interactive Sessions",
+      bulletPoints: [
+        "Livestream në kohë reale 24/7",
+        "Interaksion direkt dhe privat",
+        "Sesione ekskluzive dhe të personalizuara"
+      ],
+      bannerUrl: "https://via.placeholder.com/400x100/764ba2/ffffff?text=Live+Now+-+Join+Stream",
+      actionText: "🎥 Bashkohu Tani",
+      finalUrl: "https://example.com/livestream-access"
+    }
+  };
+
+  const data = buttonData[type];
+  
+  // Update popup content
+  document.getElementById("buttonPopupHeader").textContent = data.name;
+  document.getElementById("buttonPopupTitle").textContent = data.title;
+  
+  // Update bullet points
+  const bulletList = document.getElementById("buttonBulletPoints");
+  bulletList.innerHTML = "";
+  data.bulletPoints.forEach(point => {
+    const li = document.createElement("li");
+    li.textContent = point;
+    bulletList.appendChild(li);
+  });
+  
+  // Update banner
+  document.getElementById("buttonPopupBannerImg").src = data.bannerUrl;
+  
+  // Update button text
+  document.getElementById("buttonActionBtn").textContent = data.actionText;
+  
+  // Store the final URL for later use
+  document.getElementById("buttonActionBtn").setAttribute("data-url", data.finalUrl);
+  document.getElementById("buttonPopupBanner").setAttribute("data-url", data.finalUrl);
+  
+  // Show the popup
+  document.getElementById("buttonPopup").style.display = "flex";
+}
+
 function showProfilePopup() {
   document.getElementById("profilePopup").style.display = "flex";
 }
@@ -79,6 +137,34 @@ document.addEventListener('DOMContentLoaded', function() {
   // Close profile popup
   document.getElementById("closeProfileIcon").onclick = () => {
     document.getElementById("profilePopup").style.display = "none";
+  };
+
+  // Close button popup
+  document.getElementById("closeButtonIcon").onclick = () => {
+    document.getElementById("buttonPopup").style.display = "none";
+  };
+
+  // Button popup banner and button actions
+  document.getElementById("buttonPopupBanner").onclick = () => {
+    const url = document.getElementById("buttonPopupBanner").getAttribute("data-url");
+    const buttonType = document.getElementById("buttonPopupHeader").textContent;
+    showLinkPopup(
+      url,
+      `${buttonType}`,
+      "Ky link ju drejton në një faqe të veçantë. A doni të vazhdoni?"
+    );
+    document.getElementById("buttonPopup").style.display = "none";
+  };
+
+  document.getElementById("buttonActionBtn").onclick = () => {
+    const url = document.getElementById("buttonActionBtn").getAttribute("data-url");
+    const buttonText = document.getElementById("buttonActionBtn").textContent;
+    showLinkPopup(
+      url,
+      `${buttonText}`,
+      "Ky link ju drejton në faqen e aksesit të plotë. A doni të vazhdoni?"
+    );
+    document.getElementById("buttonPopup").style.display = "none";
   };
 
   // Profile popup banner and button actions
@@ -156,11 +242,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Assign actions to existing elements
   document.getElementById("explicitBtn").onclick = () => {
-    showLinkPopup("https://example.com/explicit","🔞 Përmbajtje Eksplicite","Ky link përmban përmbajtje eksplicite për të rritur. A jeni të sigurt që doni të vazhdoni?");
+    showButtonPopup("explicit");
   };
   
   document.getElementById("livestreamBtn").onclick = () => {
-    showLinkPopup("https://example.com/livestream","👁️ Livestream +18","Ky link ju drejton në një livestream për të rritur. A doni të vazhdoni?");
+    showButtonPopup("livestream");
   };
   
   document.getElementById("unlockBtn").onclick = () => {

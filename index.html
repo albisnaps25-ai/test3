@@ -3,439 +3,498 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Page</title>
+  <title>Profile Page with Logo Header</title>
   <style>
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
+  .header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 450px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 0 0 12px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
 
-    .profile-card {
-      background: #fff;
-      width: 450px;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      text-align: center;
-      position: relative;
-    }
+.logo-left {
+  display: flex;
+  align-items: center;
+}
 
-    /* Banner */
-    .cover {
-      background: url('v4_144.png') center/cover no-repeat;
-      height: 160px;
-      position: relative;
-      cursor: pointer;
-    }
+.logo-img {
+  height: 45px;
+  width: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+}
 
-    /* Profile picture */
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      object-fit: cover;
-      cursor: pointer;
-    }
+.logo-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
 
-    .content {
-      padding: 80px 20px 30px;
-    }
+.logo-text {
+  color: #333;
+  font-size: 22px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
 
-    /* Name + Verified */
-    .name {
-      font-size: 22px;
-      font-weight: 600;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 6px;
-    }
+.only-text {
+  color: #00b0f1;
+}
 
-    .verified {
-      color: #1da1f2;
-      font-size: 18px;
-    }
+.fans-text {
+  color: #008acf;
+}
 
-    /* Stats */
-    .stats {
-      margin: 12px 0;
-      font-size: 14px;
-      color: #444;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+@media (max-width: 600px) {
+  .logo-img {
+    height: 35px;
+    width: 35px;
+  }
+  .logo-text {
+    font-size: 18px;
+  }
+  .header {
+    height: 60px;
+    padding: 0 10px;
+  }
+}
 
-    .stats span {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 5px 8px;
-      border-radius: 15px;
-      transition: background-color 0.3s;
-    }
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 70px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
 
-    .stats span:hover {
-      background-color: #f0f0f0;
-    }
+.profile-card {
+  background: #fff;
+  width: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+  margin: 0;
+}
 
-    /* Handle + status */
-    .handle {
-      font-size: 15px;
-      color: #555;
-      margin-top: 5px;
-    }
+.cover {
+  background: url('v4_144.png') center/cover no-repeat;
+  height: 160px;
+  position: relative;
+  cursor: pointer;
+}
 
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-left: 8px;
-      font-weight: 500;
-      color: #333;
-    }
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover;
+  cursor: pointer;
+}
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: #00c200;
-      border-radius: 50%;
-      display: inline-block;
-    }
+.content {
+  padding: 80px 20px 30px;
+}
 
-    /* Banner Ad */
-    .banner-ad {
-      width: 100%;
-      margin: 20px 0;
-      cursor: pointer;
-    }
+.name {
+  font-size: 22px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
 
-    .banner-ad img {
-      width: 100%;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
+.verified {
+  color: #1da1f2;
+  font-size: 18px;
+}
 
-    .banner-ad img:hover {
-      transform: scale(1.02);
-    }
+.stats {
+  margin: 12px 0;
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
 
-    /* Buttons */
-    .buttons {
-      margin-top: 15px;
-    }
+.stats span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 15px;
+  transition: background-color 0.3s;
+}
 
-    .buttons button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      width: 80%;
-      margin: 12px auto;
-      padding: 14px;
-      font-size: 16px;
-      font-weight: 500;
-      border: none;
-      border-radius: 30px;
-      background: #00aaff;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
+.stats span:hover {
+  background-color: #f0f0f0;
+}
 
-    .buttons button:hover {
-      background: #0088cc;
-    }
+.handle {
+  font-size: 15px;
+  color: #555;
+  margin-top: 5px;
+}
 
-    /* Photo Grid */
-    .photo-grid-wrapper {
-      position: relative;
-      margin-top: 20px;
-      padding: 0 10px;
-    }
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+  font-weight: 500;
+  color: #333;
+}
 
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #00c200;
+  border-radius: 50%;
+  display: inline-block;
+}
 
-    .photo-grid img,
-    .stats-grid img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 8px;
-      object-fit: cover;
-      filter: blur(1.5px) brightness(0.97);
-      transition: all 0.3s;
-      cursor: pointer;
-    }
+.banner-ad {
+  width: 100%;
+  margin: 20px 0;
+  cursor: default;
+}
 
-    .photo-grid img:hover,
-    .stats-grid img:hover {
-      filter: blur(0.8px) brightness(1);
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    }
+.banner-ad img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
 
-    /* Unlock Button floating over photos */
-    .unlock-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: 500;
-      border: none;
-      border-radius: 30px;
-      background: #ff4d4d;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-      z-index: 2;
-    }
+.buttons {
+  margin-top: 15px;
+}
 
-    .unlock-btn:hover {
-      background: #cc0000;
-    }
+.buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 80%;
+  margin: 12px auto;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  background: #00aaff;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
-    /* Popup Styles */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
+.buttons button:hover {
+  background: #0088cc;
+}
 
-    .popup {
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 320px;
-      width: 85%;
-      text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-      animation: popupAppear 0.25s ease-out;
-      position: relative;
-    }
+.photo-grid-wrapper {
+  position: relative;
+  margin-top: 20px;
+  padding: 0 10px;
+}
 
-    @keyframes popupAppear {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
 
-    .popup-header {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #333;
-    }
+.photo-grid img,
+.stats-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  object-fit: cover;
+  filter: blur(1.5px) brightness(0.97);
+  transition: all 0.3s;
+  cursor: pointer;
+}
 
-    .popup-content {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #666;
-      margin-bottom: 20px;
-    }
+.photo-grid img:hover,
+.stats-grid img:hover {
+  filter: blur(0.8px) brightness(1);
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
 
-    .popup-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-    }
+.unlock-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d4d;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 2;
+}
 
-    .popup-btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 25px;
-      font-size: 15px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
+.unlock-btn:hover {
+  background: #cc0000;
+}
 
-    .btn-confirm {
-      background: #00aaff;
-      color: #fff;
-    }
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-    .btn-confirm:hover {
-      background: #0088cc;
-    }
+.popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 320px;
+  width: 85%;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  animation: popupAppear 0.25s ease-out;
+  position: relative;
+}
 
-    .btn-cancel {
-      background: #ff4d4d;
-      color: #fff;
-    }
+@keyframes popupAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
-    .btn-cancel:hover {
-      background: #cc0000;
-    }
+.popup-header {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
 
-    /* Close Icon */
-    .close-icon {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #888;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
+.popup-content {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666;
+  margin-bottom: 20px;
+}
 
-    .close-icon:hover {
-      color: #000;
-    }
+.popup-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
 
-    /* Stats Popup */
-    .stats-popup .popup {
-      max-width: 400px;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
+.popup-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 20px 0;
-      position: relative;
-    }
+.btn-confirm {
+  background: #00aaff;
+  color: #fff;
+}
 
-    /* Unlock button in popup */
-    .popup-unlock-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 500;
-      border: none;
-      border-radius: 25px;
-      background: #ff4d4d;
-      color: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
-      z-index: 2;
-    }
+.btn-confirm:hover {
+  background: #0088cc;
+}
 
-    .popup-unlock-btn:hover {
-      background: #cc0000;
-    }
+.btn-cancel {
+  background: #ff4d4d;
+  color: #fff;
+}
 
-    /* Profile Info Popup Styles */
-    .profile-popup .popup {
-      max-width: 450px;
-      width: 90%;
-      text-align: left;
-    }
+.btn-cancel:hover {
+  background: #cc0000;
+}
 
-    .profile-popup .popup-header {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #333;
-    }
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
 
-    .profile-popup .popup-title {
-      text-align: center;
-      font-size: 16px;
-      color: #666;
-      margin-bottom: 20px;
-      font-weight: normal;
-    }
+.close-icon:hover {
+  color: #000;
+}
 
-    .profile-popup .bullet-points {
-      margin: 20px 0;
-      padding-left: 0;
-    }
+.stats-popup .popup {
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
 
-    .profile-popup .bullet-points li {
-      list-style: none;
-      padding: 8px 0;
-      font-size: 15px;
-      color: #444;
-      position: relative;
-      padding-left: 25px;
-    }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 20px 0;
+  position: relative;
+}
 
-    .profile-popup .bullet-points li:before {
-      content: "•";
-      color: #00aaff;
-      font-weight: bold;
-      position: absolute;
-      left: 0;
-      font-size: 18px;
-    }
+.popup-unlock-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  background: #ff4d4d;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 2;
+}
 
-    .profile-popup .popup-banner-ad {
-      margin: 20px 0;
-      border-radius: 8px;
-      overflow: hidden;
-      cursor: pointer;
-    }
+.popup-unlock-btn:hover {
+  background: #cc0000;
+}
 
-    .profile-popup .popup-banner-ad img {
-      width: 100%;
-      height: 100px;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
+.profile-popup .popup {
+  max-width: 450px;
+  width: 90%;
+  text-align: left;
+}
 
-    .profile-popup .popup-banner-ad img:hover {
-      transform: scale(1.05);
-    }
+.profile-popup .popup-header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
 
-    .profile-popup .popup-action-btn {
-      width: 100%;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 15px;
-    }
+.profile-popup .popup-title {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
 
-    .profile-popup .popup-action-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    }
+.profile-popup .bullet-points {
+  margin: 20px 0;
+  padding-left: 0;
+}
+
+.profile-popup .bullet-points li {
+  list-style: none;
+  padding: 8px 0;
+  font-size: 15px;
+  color: #444;
+  position: relative;
+  padding-left: 25px;
+}
+
+.profile-popup .bullet-points li:before {
+  content: "•";
+  color: #00aaff;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+}
+
+.profile-popup .popup-banner-ad {
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profile-popup .popup-banner-ad img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.profile-popup .popup-banner-ad img:hover {
+  transform: scale(1.05);
+}
+
+.profile-popup .popup-action-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 15px;
+}
+
+.profile-popup .popup-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
   </style>
 </head>
 <body>
+  <!-- Updated Header -->
+  <header class="header">
+    <img src="logo.png" alt="OnlyFans Logo" class="logo-img">
+    <div class="logo-center">
+      <div class="logo-text"><span class="only-text">Only</span><span class="fans-text">Fans</span></div>
+    </div>
+  </header>
+
   <div class="profile-card">
     <!-- Banner -->
     <div class="cover" id="bannerArea">
@@ -483,30 +542,13 @@
     </div>
   </div>
 
-  <!-- Link Confirmation Popup -->
-  <div class="popup-overlay" id="linkPopup">
-    <div class="popup">
-      <div class="close-icon" id="popupClose">×</div>
-      <div class="popup-header" id="popupTitle">Konfirmo Veprimin</div>
-      <div class="popup-content" id="popupMessage">
-        A jeni të sigurt që doni të vazhdoni në këtë link?
-      </div>
-      <div class="popup-buttons">
-        <button class="popup-btn btn-confirm" id="confirmBtn">Po, Vazhdo</button>
-        <button class="popup-btn btn-cancel" id="cancelBtn">Mbyll</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Stats Popup -->
+  <!-- Stats Popup - UPDATED: Removed the close button from the bottom -->
   <div class="popup-overlay stats-popup" id="statsPopup">
     <div class="popup">
       <div class="close-icon" id="closeStatsIcon">×</div>
       <div class="popup-header" id="statsTitle">Statistikat</div>
       <div class="stats-grid" id="statsGrid"></div>
-      <div class="popup-buttons">
-        <button class="popup-btn btn-cancel" id="closeStatsBtn">Mbyll</button>
-      </div>
+      <!-- Removed the close button div here -->
     </div>
   </div>
 
@@ -552,7 +594,173 @@
     </div>
   </div>
 
-  <!-- JavaScript Link -->
-  <script src="script.js"></script>
+  <script>
+    function showButtonPopup(type) {
+      const buttonData = {
+        explicit: {
+          name: "🔞 Explicit Content",
+          title: "Premium Adult Content",
+          bulletPoints: [
+            "Përmbajtje ekskluzive vetëm për të rritur",
+            "Material i kufizuar dhe i personalizuar", 
+            "Aksesi i plotë në koleksionin premium"
+          ],
+          bannerUrl: "https://via.placeholder.com/400x100/ff4444/ffffff?text=Adult+Content+Warning",
+          actionText: "🔓 Shiko Përmbajtjen",
+          finalUrl: "https://example.com/explicit-access"
+        },
+        livestream: {
+          name: "👁️ +18 Livestream",
+          title: "Live Interactive Sessions",
+          bulletPoints: [
+            "Livestream në kohë reale 24/7",
+            "Interaksion direkt dhe privat",
+            "Sesione ekskluzive dhe të personalizuara"
+          ],
+          bannerUrl: "https://via.placeholder.com/400x100/764ba2/ffffff?text=Live+Now+-+Join+Stream",
+          actionText: "🎥 Bashkohu Tani",
+          finalUrl: "https://example.com/livestream-access"
+        }
+      };
+
+      const data = buttonData[type];
+      document.getElementById("buttonPopupHeader").textContent = data.name;
+      document.getElementById("buttonPopupTitle").textContent = data.title;
+      const bulletList = document.getElementById("buttonBulletPoints");
+      bulletList.innerHTML = "";
+      data.bulletPoints.forEach(point => {
+        const li = document.createElement("li");
+        li.textContent = point;
+        bulletList.appendChild(li);
+      });
+      document.getElementById("buttonPopupBannerImg").src = data.bannerUrl;
+      document.getElementById("buttonActionBtn").textContent = data.actionText;
+      document.getElementById("buttonActionBtn").setAttribute("data-url", data.finalUrl);
+      document.getElementById("buttonPopupBanner").setAttribute("data-url", data.finalUrl);
+      document.getElementById("buttonPopup").style.display = "flex";
+    }
+
+    function showProfilePopup() {
+      document.getElementById("profilePopup").style.display = "flex";
+    }
+
+    function showStatsPopup(type) {
+      const statsData = {
+        photos: {
+          title: "📷 Koleksioni i Fotove",
+          images: [
+            "https://via.placeholder.com/150x150/ff6b9d/ffffff?text=Foto+1",
+            "https://via.placeholder.com/150x150/c44569/ffffff?text=Foto+2", 
+            "https://via.placeholder.com/150x150/f8b500/ffffff?text=Foto+3"
+          ],
+          unlockUrl: "https://example.com/unlock-photos"
+        },
+        videos: {
+          title: "🎥 Koleksioni i Videove",
+          images: [
+            "https://via.placeholder.com/150x150/636e72/ffffff?text=Video+1",
+            "https://via.placeholder.com/150x150/2d3436/ffffff?text=Video+2",
+            "https://via.placeholder.com/150x150/636e72/ffffff?text=Video+3"
+          ],
+          unlockUrl: "https://example.com/unlock-videos"
+        }
+      };
+      
+      const data = statsData[type];
+      document.getElementById("statsTitle").textContent = data.title;
+      
+      const statsGrid = document.getElementById("statsGrid");
+      statsGrid.innerHTML = "";
+      
+      // Create images
+      data.images.forEach((imageSrc, index) => {
+        const img = document.createElement("img");
+        img.src = imageSrc;
+        img.alt = `${type} ${index + 1}`;
+        img.onclick = () => {
+          window.open(`https://example.com/${type}/${index + 1}`, '_blank');
+        };
+        statsGrid.appendChild(img);
+      });
+      
+      // Create unlock button
+      const unlockBtn = document.createElement("button");
+      unlockBtn.className = "popup-unlock-btn";
+      unlockBtn.textContent = type === 'photos' ? '🔓 Shkyç Fotot' : '🔓 Shkyç Videot';
+      unlockBtn.onclick = () => {
+        window.open(data.unlockUrl, '_blank');
+      };
+      statsGrid.appendChild(unlockBtn);
+      
+      document.getElementById("statsPopup").style.display = "flex";
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById("profilePicture").onclick = showProfilePopup;
+      document.getElementById("bannerArea").onclick = showProfilePopup;
+      document.getElementById("closeProfileIcon").onclick = () => {
+        document.getElementById("profilePopup").style.display = "none";
+      };
+      document.getElementById("closeButtonIcon").onclick = () => {
+        document.getElementById("buttonPopup").style.display = "none";
+      };
+      document.getElementById("buttonPopupBanner").onclick = () => {
+        const url = document.getElementById("buttonPopupBanner").getAttribute("data-url");
+        window.open(url, '_blank');
+        document.getElementById("buttonPopup").style.display = "none";
+      };
+      document.getElementById("buttonActionBtn").onclick = () => {
+        const url = document.getElementById("buttonActionBtn").getAttribute("data-url");
+        window.open(url, '_blank');
+        document.getElementById("buttonPopup").style.display = "none";
+      };
+      document.getElementById("profilePopupBanner").onclick = () => {
+        window.open("https://example.com/special-offer", '_blank');
+        document.getElementById("profilePopup").style.display = "none";
+      };
+      document.getElementById("profileActionBtn").onclick = () => {
+        window.open("https://example.com/premium-access", '_blank');
+        document.getElementById("profilePopup").style.display = "none";
+      };
+      document.getElementById("closeStatsIcon").onclick = () => {
+        document.getElementById("statsPopup").style.display = "none";
+      };
+      document.getElementById("statsPopup").onclick = (e) => {
+        if (e.target.id === "statsPopup") {
+          document.getElementById("statsPopup").style.display = "none";
+        }
+      };
+      document.getElementById("profilePopup").onclick = (e) => {
+        if (e.target.id === "profilePopup") {
+          document.getElementById("profilePopup").style.display = "none";
+        }
+      };
+      document.getElementById("buttonPopup").onclick = (e) => {
+        if (e.target.id === "buttonPopup") {
+          document.getElementById("buttonPopup").style.display = "none";
+        }
+      };
+      document.getElementById("explicitBtn").onclick = () => {
+        showButtonPopup("explicit");
+      };
+      document.getElementById("livestreamBtn").onclick = () => {
+        showButtonPopup("livestream");
+      };
+      document.getElementById("unlockBtn").onclick = () => {
+        window.open("https://example.com/unlock", '_blank');
+      };
+      document.getElementById("photo1").onclick = () => {
+        window.open("https://example.com/photo1", '_blank');
+      };
+      document.getElementById("photo2").onclick = () => {
+        window.open("https://example.com/photo2", '_blank');
+      };
+      document.getElementById("photo3").onclick = () => {
+        window.open("https://example.com/photo3", '_blank');
+      };
+      document.getElementById("photoStats").onclick = () => { showStatsPopup("photos"); };
+      document.getElementById("videoStats").onclick = () => { showStatsPopup("videos"); };
+    });
+  </script>
 </body>
 </html>

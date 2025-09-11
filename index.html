@@ -160,12 +160,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      flex-direction: row;
       gap: 10px;
     }
     .banner-ad img {
-      width: 100%;
-      height: 90px;
+      width: 300px;
+      height: 100px;
       object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -309,12 +309,13 @@
       overflow: hidden;
       cursor: pointer;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       gap: 10px;
+      justify-content: center;
     }
     .popup-banner-ad img {
-      width: 100%;
+      width: 300px;
       height: 100px;
       object-fit: cover;
       transition: transform 0.3s;
@@ -405,12 +406,11 @@
       </div>
       <div class="handle"></div>
       <div class="banner-ad" id="bannerAdImage">
-        <!-- REPLACED WITH TWO GIFS -->
-        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-          <img src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif" width="300" height="100" border="0" />
-        </a>
-        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-          <img src="https://www.imglnkx.com/8780/DESIGN-19806_Neon_300100_6.gif" width="300" height="100" border="0" />
+        <!-- ROTATING TWO GIFS IN SAME PLACE -->
+        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002"
+           target="_blank">
+          <img id="rotatingBanner" src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif"
+               width="300" height="100" border="0" />
         </a>
       </div>
       <div class="buttons">
@@ -439,12 +439,11 @@
       <div class="popup-title">Premium Content Creator</div>
       <ul class="bullet-points" id="bioBullets"></ul>
       <div class="popup-banner-ad" id="profilePopupBanner">
-        <!-- REPLACED WITH TWO GIFS -->
-        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-          <img src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif" width="300" height="100" border="0" />
-        </a>
-        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-          <img src="https://www.imglnkx.com/8780/DESIGN-19806_Neon_300100_6.gif" width="300" height="100" border="0" />
+        <!-- ROTATING TWO GIFS IN SAME PLACE -->
+        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002"
+           target="_blank">
+          <img id="rotatingBannerPopup" src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif"
+               width="300" height="100" border="0" />
         </a>
       </div>
       <button class="popup-action-btn" id="profileActionBtn">🎯 View Special Offer</button>
@@ -462,12 +461,11 @@
         <li>Sample bullet point 3</li>
       </ul>
       <div class="popup-banner-ad" id="buttonPopupBanner">
-        <!-- REPLACED WITH TWO GIFS -->
-        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-          <img src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif" width="300" height="100" border="0" />
-        </a>
-        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002" target="_blank">
-          <img src="https://www.imglnkx.com/8780/DESIGN-19806_Neon_300100_6.gif" width="300" height="100" border="0" />
+        <!-- ROTATING TWO GIFS IN SAME PLACE -->
+        <a href="https://t.mbslr2.com/371938/8780/0?aff_sub=fb1&aff_sub2=fb2&bo=2779,2778,2777,2776,2775&source=klidi&file_id=598462&po=6533&aff_sub5=SF_006OG000004lmDN&aff_sub4=AT_0002"
+           target="_blank">
+          <img id="rotatingBannerButton" src="https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif"
+               width="300" height="100" border="0" />
         </a>
       </div>
       <button class="popup-action-btn" id="buttonActionBtn">🎯 Action Button</button>
@@ -508,6 +506,31 @@
       ]
     }; 
     // ---- END PROFILE DATA ----
+
+    // Banner rotator logic for main banner
+    const banners = [
+      "https://www.imglnkx.com/8780/PMKT-1157_DESIGN-16618_BannersWebinar_AmyPose_300100.gif",
+      "https://www.imglnkx.com/8780/DESIGN-19806_Neon_300100_6.gif"
+    ];
+    let currentBanner = 0;
+    setInterval(() => {
+      currentBanner = (currentBanner + 1) % banners.length;
+      document.getElementById("rotatingBanner").src = banners[currentBanner];
+    }, 3000);
+
+    // Banner rotator for profile popup
+    let currentBannerPopup = 0;
+    setInterval(() => {
+      currentBannerPopup = (currentBannerPopup + 1) % banners.length;
+      document.getElementById("rotatingBannerPopup").src = banners[currentBannerPopup];
+    }, 3000);
+
+    // Banner rotator for button popup
+    let currentBannerButton = 0;
+    setInterval(() => {
+      currentBannerButton = (currentBannerButton + 1) % banners.length;
+      document.getElementById("rotatingBannerButton").src = banners[currentBannerButton];
+    }, 3000);
 
     function renderProfile() {
       document.getElementById("profilePicture").src = profileData.avatar;
